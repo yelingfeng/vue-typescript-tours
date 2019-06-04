@@ -29,9 +29,11 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-config-yelingfeng": "^1.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "prettier-eslint": "^8.8.2",
     "ts-jest": "^23.0.0",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.6.10"
