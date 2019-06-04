@@ -1,4 +1,5 @@
-# tours-v1
+# vue-typescript-tours
+vue ts  for tours demo
 
 ## Project setup
 ```
@@ -30,5 +31,4 @@ yarn run lint
 yarn run test:unit
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
