@@ -8,11 +8,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import { getMenuList } from '@/api/menu.ts'
 @Component({
-    components: {
-        HelloWorld
-    }
+    components: { HelloWorld }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+    mounted() {
+        getMenuList(1).then(resp => {
+            console.log(resp.data)
+        })
+    }
+}
 </script>
