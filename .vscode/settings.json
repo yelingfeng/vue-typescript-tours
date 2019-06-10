@@ -2,22 +2,24 @@
 {
     "editor.fontSize": 14,
     "editor.tabSize": 4,
+    "emmet.syntaxProfiles": {
+        "vue-html": "html",
+        "vue": "html"
+    },
     "workbench.colorTheme": "Atom One Dark",
     "workbench.iconTheme": "material-icon-theme",
     "material-icon-theme.showUpdateMessage": false,
     "fileheader.Author": "yelingfeng",
     "fileheader.LastModifiedBy": "yelingfeng",
     "files.associations": {
-      "*.vue": "vue"
+        "*.vue": "vue"
     },
     "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
-    "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
-    "vetur.format.defaultFormatter.js": "prettier",
+    // "vetur.format.defaultFormatter.js": "vscode-typescript",
     "vetur.format.defaultFormatter.html": "js-beautify-html",
-    "vetur.format.defaultFormatter.ts": "vscode-typescript",
-    "vetur.format.defaultFormatter.css": "prettier",
-
+    // "vetur.format.defaultFormatter.ts": "prettier",
+    // "vetur.format.defaultFormatter.css": "prettier",
     //保存时eslint自动修复错误
     "eslint.validate": [
         "javascript",
