@@ -1,0 +1,31 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+    "editor.fontSize": 14,
+    "editor.tabSize": 4,
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.showUpdateMessage": false,
+    "fileheader.Author": "yelingfeng",
+    "fileheader.LastModifiedBy": "yelingfeng",
+    "files.associations": {
+      "*.vue": "vue"
+    },
+    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "vetur.format.defaultFormatter.js": "prettier",
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatter.ts": "vscode-typescript",
+    "vetur.format.defaultFormatter.css": "prettier",
+
+    //保存时eslint自动修复错误
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ],
+    "eslint.autoFixOnSave": true
+}
