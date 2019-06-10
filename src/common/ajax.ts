@@ -27,7 +27,7 @@ const sendMessage = (msg: string, type: MessageType) => {
 }
 
 service.interceptors.response.use(
-    (response) => {
+    response => {
         const res = response.data
         const status = response.status
         if (status === 200) {
@@ -39,7 +39,7 @@ service.interceptors.response.use(
             return response.data
         }
     },
-    (error) => {
+    error => {
         sendMessage(error.message, 'error')
         return Promise.reject(error)
     }
