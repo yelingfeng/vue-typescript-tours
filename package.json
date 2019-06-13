@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "echarts": "^4.2.1",
     "element-ui": "^2.9.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
@@ -21,6 +22,7 @@
     "vuex-class": "^0.3.2"
   },
   "devDependencies": {
+    "@types/echarts": "^4.1.9",
     "@types/jest": "^23.1.4",
     "@types/webpack-env": "^1.13.9",
     "@vue/cli-plugin-babel": "^3.8.0",
