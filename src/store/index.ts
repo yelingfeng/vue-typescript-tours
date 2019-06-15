@@ -6,7 +6,7 @@ import { UserState } from './modules/user'
 Vue.use(Vuex)
 
 export interface RootState {
-    global: GlobalState
+    global: GlobalState,
     user: UserState
 }
 

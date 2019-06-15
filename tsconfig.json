@@ -19,7 +19,7 @@
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
         "baseUrl": ".",
-        "types": ["webpack-env", "jest", "lodash"],
+        "types": ["webpack-env", "jest"],
         "paths": {
             "@/*": ["src/*"]
         },
