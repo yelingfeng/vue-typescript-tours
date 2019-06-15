@@ -27,7 +27,7 @@ class User extends VuexModule implements UserState {
     updateUserId(userId: string) {
         this.userId = userId
     }
-    
+
     @Action({ commit: 'updateUserName' })
     changeUserName(userName: string) {
         return userName
