@@ -14,7 +14,7 @@
     "files.associations": {
         "*.vue": "vue"
     },
-    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "'Consolas', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
     // "vetur.format.defaultFormatter.js": "vscode-typescript",
     "vetur.format.defaultFormatter.html": "js-beautify-html",

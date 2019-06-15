@@ -1,7 +1,7 @@
 const globalObj: any = {}
 
 class WebStorage {
-    storage: Storage;
+    storage: Storage
     constructor(storage: Storage) {
         this.storage = storage
     }
@@ -14,7 +14,8 @@ class WebStorage {
         }
     }
     set(key: string, value: any) {
-        const valueStr = typeof value === 'string' ? value : JSON.stringify(value)
+        const valueStr =
+            typeof value === 'string' ? value : JSON.stringify(value)
         return this.storage.setItem(key, valueStr)
     }
     remove(key: string) {
