@@ -1,4 +1,4 @@
-import request from '@/common/ajax'
+import request from '@/common/request'
 
 /**
  * 测试接口

@@ -8,8 +8,9 @@
         // 启动严格模式
         "strict": true,
         "jsx": "preserve",
-        // 
         "importHelpers": true,
+        // 忽略 this 的类型检查, Raise error on this expressions with an implied any type.
+        "noImplicitThis": false,
         // 模块处理
         "moduleResolution": "node",
         // 启用装饰器
@@ -24,12 +25,7 @@
             "@/*": ["src/*"]
         },
         // 编译过程中需要引入的库文件的列表。
-        "lib": [
-            "esnext",
-            "dom",
-            "dom.iterable",
-            "scripthost"
-        ],
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
         // 给错误和消息设置样式，使用颜色和上下文。
         "pretty": true
     },

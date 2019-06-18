@@ -1,47 +1,71 @@
 {
-  "name": "tours-v1",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
-    "dist": "cd dist &&  python -m SimpleHTTPServer 3000 "
-  },
-  "dependencies": {
-    "axios": "^0.19.0",
-    "core-js": "^2.6.5",
-    "element-ui": "^2.9.1",
-    "vue": "^2.6.10",
-    "vue-class-component": "^7.0.2",
-    "vue-property-decorator": "^8.1.0",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1",
-    "vuex-class": "^0.3.2"
-  },
-  "devDependencies": {
-    "@types/jest": "^23.1.4",
-    "@types/webpack-env": "^1.13.9",
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-plugin-typescript": "^3.8.0",
-    "@vue/cli-plugin-unit-jest": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "@vue/eslint-config-typescript": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-config-yelingfeng": "^1.1.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "less": "^3.0.4",
-    "less-loader": "^4.1.0",
-    "prettier-eslint": "^8.8.2",
-    "ts-jest": "^23.0.0",
-    "typescript": "^3.4.3",
-    "vue-template-compiler": "^2.6.10",
-    "vuex-module-decorators": "^0.9.9"
-  }
+    "name": "tours-v1",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "test:unit": "vue-cli-service test:unit",
+        "dist": "cd dist &&  python -m SimpleHTTPServer 3000 "
+    },
+    "dependencies": {
+        "axios": "^0.19.0",
+        "core-js": "^2.6.5",
+        "element-ui": "^2.9.1",
+        "vue": "^2.6.10",
+        "vue-class-component": "^7.0.2",
+        "vue-property-decorator": "^8.1.0",
+        "vue-router": "^3.0.3",
+        "vuex": "^3.0.1",
+        "vuex-class": "^0.3.2"
+    },
+    "devDependencies": {
+        "@types/jest": "^23.1.4",
+        "@types/webpack-env": "^1.13.9",
+        "@vue/cli-plugin-babel": "^3.8.0",
+        "@vue/cli-plugin-eslint": "^3.8.0",
+        "@vue/cli-plugin-typescript": "^3.8.0",
+        "@vue/cli-plugin-unit-jest": "^3.8.0",
+        "@vue/cli-service": "^3.8.0",
+        "@vue/eslint-config-prettier": "^4.0.1",
+        "@vue/eslint-config-typescript": "^4.0.0",
+        "@vue/test-utils": "1.0.0-beta.29",
+        "babel-core": "7.0.0-bridge.0",
+        "babel-eslint": "^10.0.1",
+        "commitizen": "^3.1.1",
+        "cz-conventional-changelog": "^2.1.0",
+        "eslint": "^5.16.0",
+        "eslint-config-yelingfeng": "^1.1.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "husky": "^2.4.1",
+        "lint-staged": "^8.2.1",
+        "prettier-eslint": "^8.8.2",
+        "sass": "^1.21.0",
+        "sass-loader": "^7.1.0",
+        "ts-jest": "^23.0.0",
+        "typescript": "^3.4.3",
+        "vue-template-compiler": "^2.6.10",
+        "vuex-module-decorators": "^0.9.9"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,ts,json,md}": [
+            "prettier --write",
+            "git add"
+        ],
+        "src/*.js": [
+            "vue-cli-service lint --fix",
+            "git add"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
 }

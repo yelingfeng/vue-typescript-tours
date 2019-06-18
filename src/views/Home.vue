@@ -19,10 +19,9 @@ export default class Home extends Vue {
     }
 
     mounted() {
-        getMenuList(1).then(resp => {
-            console.log(resp.data)
-        })
-
+        // getMenuList(1).then(resp => {
+        //     console.log(resp.data)
+        // })
         console.log(this.getMapZoom)
     }
 }

@@ -1,7 +1,6 @@
 const BASE_URL = '/Tours/'
 module.exports = {
-    // baseUrl: process.argv[3] === '--dev' ? BASE_URL : '/',
-    publicPath: process.argv[3] === '--dev' ? BASE_URL : '/',
+    publicPath: process.env.NODE_ENV === 'production' ? BASE_URL : '/',
     outputDir: 'dist',
     lintOnSave: true,
     assetsDir: 'lib',

@@ -1,0 +1,121 @@
+<template>
+    <div class="hc">
+        <div class="hc-left">
+            <span class="hc-left-sysname">{{ sysName }}</span>
+            <i class="hc-left-menu"></i>
+        </div>
+        <div class="hc-center">
+            <span class="hc-center-title">{{ this.$route.name }}</span>
+        </div>
+        <div class="hc-right">
+            <span class="hc-right-clock">
+                <Clock />
+            </span>
+            <span class="hc-right-userinfo">{{ userMsg }}</span>
+            <i class="hc-right-exit" @click="exitLogin" title="退出系统"></i>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Clock from './components/time-clock.vue'
+@Component({
+    components: {
+        Clock
+    }
+})
+export default class Header extends Vue {
+    private sysName = '旅游监测分析系统'
+    private userMsg = 'admin'
+    mounted() {}
+
+    exitLogin(e: any) {
+        console.log(e)
+    }
+}
+</script>
+
+<style lang="scss">
+@import '@/styles/mixin.scss';
+.hc {
+    @include clearfix;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: url('./../../assets/images/dashboard/headerBg.png') no-repeat
+        center 0;
+    background-size: contain;
+
+    &-left {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        height: 88px;
+        z-index: 102;
+
+        &-sysname {
+            color: #00feff;
+            font-size: 20px;
+            font-family: zzgf;
+            letter-spacing: 4px;
+            white-space: nowrap;
+            cursor: default;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+
+        &-menu {
+            width: 15px;
+            height: 15px;
+            margin-right: 0.26vw;
+            background: url('./../../assets/images/dashboard/menu.png')
+                no-repeat;
+            background-size: 100% 100%;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &-center {
+        width: calc(70% - 10vw);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-title {
+            font-size: 1.3vw;
+            color: #fff;
+            line-height: 30px;
+            text-align: center;
+            margin: 0 0 20px 20px;
+        }
+    }
+    &-right {
+        width: 35vm;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        color: #fff;
+
+        &-clock {
+            margin-right: 10px;
+        }
+
+        &-userinfo {
+            margin-right: 10px;
+        }
+
+        &-exit {
+            background: url('./../../assets/images/dashboard/exit.png')
+                no-repeat;
+            background-size: contain;
+            width: 25px;
+            height: 25px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+    }
+}
+</style>

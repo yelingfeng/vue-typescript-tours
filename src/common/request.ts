@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import qs from 'qs'
 const timeout: number = 180000
 const NOTIFY_CLOSE_TIME = 3000
 
@@ -10,20 +9,27 @@ const service = axios.create({
 })
 
 declare type MessageType = 'success' | 'warning' | 'info' | 'error'
+interface MessageContent {
+    message: string
+    type: MessageType
+    duration?: number
+}
 
 const sendMessage = (msg: string, type: MessageType) => {
+    let content: MessageContent
     if (type === 'error') {
-        Message({
+        content = {
             message: msg,
             type
-        })
+        }
     } else {
-        Message({
+        content = {
             message: msg,
             type,
             duration: NOTIFY_CLOSE_TIME
-        })
+        }
     }
+    Message(content)
 }
 
 service.interceptors.response.use(
