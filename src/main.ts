@@ -4,9 +4,10 @@ import router from '@/router'
 import store from '@/store'
 import ElementUI from 'element-ui'
 import '@/styles/index.scss'
+import '@/styles/components/containerBox.scss'
+import '@/styles/components/header.scss'
 
 Vue.use(ElementUI)
-
 Vue.config.productionTip = false
 
 new Vue({

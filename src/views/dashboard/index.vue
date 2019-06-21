@@ -4,6 +4,7 @@
             <Header></Header>
         </div>
         <div class="dc-content">
+            <ContentMain></ContentMain>
             <el-row :gutter="20">
                 <el-col :span="8">
                     <div style="width:300px;height:200px;margin-top:100px;">
@@ -27,11 +28,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Header from './header.vue'
+import Header from './components/header.vue'
+import ContentMain from './components/main.vue'
 import containerBox from '@/components/containerBox.vue'
 @Component({
     components: {
         Header,
+        ContentMain,
         containerBox
     }
 })
