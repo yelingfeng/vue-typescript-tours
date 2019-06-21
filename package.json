@@ -59,7 +59,7 @@
             "git add"
         ],
         "src/*.js": [
-            "vue-cli-service lint --fix",
+            "vue-cli-service lint",
             "git add"
         ]
     },
