@@ -29,3 +29,13 @@ export const getBarChartData = () => {
         method: 'post'
     })
 }
+
+/**
+ *  景点路线轨迹分析
+ */
+export const getTrajectoryData = () => {
+    return request({
+        url: '/dashboard/routeMock',
+        method: 'post'
+    })
+}
