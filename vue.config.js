@@ -15,6 +15,7 @@ module.exports = {
         }
     },
     devServer: {
+        open: true,
         port: 8555,
         https: false,
         hotOnly: false,
@@ -27,6 +28,7 @@ module.exports = {
         }
         config.externals = {
             jquery: 'jQuery',
+            moment: 'moment',
             BMap: 'BMap',
             BMapLib: 'BMapLib'
         }

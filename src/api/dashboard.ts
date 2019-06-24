@@ -29,3 +29,9 @@ export const getBarChartData = () => {
         method: 'post'
     })
 }
+export const getZLdata = () => {
+    return request({
+        url: '/dashboard/ravellerData',
+        method: 'post'
+    })
+}

@@ -4,8 +4,9 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 @import './mixin.scss';
 @import './transition.scss';
 @import './variables.scss';
+@import './elementUI/index.scss';
 
-body, p {
+body {
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
@@ -41,4 +42,18 @@ div:focus {
 @font-face{
     font-family: 'zzgf';
     src : url('../assets/fonts/zzgf-lh.otf');
+}
+/** 滚动条样式 **/
+::-webkit-scrollbar {
+    width: 4px;
+    height:4px;
+    transform: rotate(-360deg);
+}
+::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background: rgba(0,164,255,0.20);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: rgba(0,164,255,0.80);
 }
