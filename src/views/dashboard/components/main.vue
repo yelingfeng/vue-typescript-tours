@@ -1,69 +1,11 @@
-<template>
-    <div class="container">
-        <div class="container__leftPart">
-            <div class="container__minBox">
-                <containerBox title="24小时旅游变化趋势">
-                    <lineArea
-                        ref="toursLine"
-                        :option="toursLineOpt"
-                        :renderData="toursLineData"
-                    ></lineArea>
-                </containerBox>
-            </div>
-            <div class="container__minBox">
-                <containerBox title="景区驻留游客排行"></containerBox>
-            </div>
-            <div class="container__minBox lastBox">
-                <containerBox title="近7天游客变化趋势">
-                    <lineArea
-                        ref="toursLine2"
-                        :option="toursLineOpt"
-                        :renderData="sevenlineData"
-                    ></lineArea>
-                </containerBox>
-            </div>
-        </div>
-        <div class="container__middlePart">
-            <div class="container__centerBox">
-                <containerBox cls="border03" :isHeader="false"></containerBox>
-            </div>
-        </div>
-        <div class="container__rightPart">
-            <div class="container__minCol">
-                <div class="container__minBox">
-                    <containerBox title="外省游客TOP5"></containerBox>
-                </div>
-                <div class="container__minBox">
-                    <containerBox title="出行方式分析"></containerBox>
-                </div>
-                <div class="container__minBox lastBox">
-                    <containerBox title="出行方式分析"></containerBox>
-                </div>
-            </div>
-            <div class="container__minCol">
-                <div class="container__minBox">
-                    <containerBox title="境外游客TOP5"></containerBox>
-                </div>
-                <div class="container__minBox">
-                    <containerBox title="出行方式分析"></containerBox>
-                </div>
-                <div class="container__minBox lastBox">
-                    <containerBox title="出行方式分析"></containerBox>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import containerBox from '@/components/containerBox.vue'
-import lineArea from '@/components/dashboard/stackedChart.vue'
+<script lang="tsx">
+import { Component } from 'vue-property-decorator'
+import { Component as VueComponent } from 'vue-tsx-support'
+import Box from '@/components/containerBox.vue'
+import StackedChart from '@/components/dashboard/stackedChart.vue'
 import { getLeftTopLineArea } from '@/api/dashboard'
-@Component({
-    components: { containerBox, lineArea }
-})
-export default class ContentMain extends Vue {
+@Component
+export default class ContentMain extends VueComponent<{}> {
     toursLineOpt: Object = {
         width: '100%',
         height: '150px',
@@ -86,6 +28,65 @@ export default class ContentMain extends Vue {
         })
 
         // this.toursLineData = allUserData
+    }
+
+    render(h: any) {
+        return (
+            <div class="container">
+                <div class="container__leftPart">
+                    <div class="container__minBox">
+                        <Box title="24小时旅游变化趋势">
+                            <StackedChart
+                                ref="toursLine"
+                                option={this.toursLineOpt}
+                                renderData={this.toursLineData}
+                            />
+                        </Box>
+                    </div>
+                    <div class="container__minBox">
+                        <Box title="景区驻留游客排行" />
+                    </div>
+                    <div class="container__minBox lastBox">
+                        <Box title="近7天游客变化趋势">
+                            <StackedChart
+                                ref="toursLine2"
+                                option={this.toursLineOpt}
+                                renderData={this.sevenlineData}
+                            />
+                        </Box>
+                    </div>
+                </div>
+                <div class="container__middlePart">
+                    <div class="container__centerBox">
+                        <Box cls="border02" isHeader="false" />
+                    </div>
+                </div>
+                <div class="container__rightPart">
+                    <div class="container__minCol">
+                        <div class="container__minBox">
+                            <Box title="外省游客TOP5" />
+                        </div>
+                        <div class="container__minBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                        <div class="container__minBox lastBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                    </div>
+                    <div class="container__minCol">
+                        <div class="container__minBox">
+                            <Box title="境外游客TOP5" />
+                        </div>
+                        <div class="container__minBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                        <div class="container__minBox lastBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }
 </script>
