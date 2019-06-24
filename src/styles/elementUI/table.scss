@@ -1,0 +1,281 @@
+// ----------------------------------Table---------------------------------------------
+$table-border-color: rgba(44, 124, 162, 0.45);
+.el-table:after, .el-table:before {
+    background: transparent;
+}
+.el-table {
+    background: transparent;
+    font-size: 12px;
+    color:#fff;
+    border: 1px solid $table-border-color;
+}
+.el-table thead,
+.el-table__header,
+.el-table__body{
+    table-layout: auto;
+    color:#fff;
+}
+.el-table__header-wrapper{
+    background: rgba(134,187,255,0.15);
+}
+.el-table__body-wrapper{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.10);
+}
+.el-table--border th.gutter:last-of-type{
+    border:none;
+}
+.el-table th, .el-table tr {
+    background-color: transparent;
+}
+.el-table td,.el-table th {
+    height: 30px;
+    padding:0;
+    border:none;
+}
+.el-table td, .el-table th.is-leaf{
+    border-bottom: none;
+    border-bottom: 1px solid $table-border-color;
+}
+.el-table td div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.el-table .cell{
+    padding: 0 4px;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+}
+.is-left .cell{
+    text-align: left;
+}
+.is-right .cell{
+    text-align: right;
+}
+.el-table__body tr.current-row>td,
+.el-table__body tr.hover-row.current-row>td{
+    background-color: transparent;
+}
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td,
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td,
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: rgba(255, 255, 255, 0.04);
+}
+.el-table--enable-row-hover .el-table__body tr.el-table__row--striped.current-row:hover > td,
+.el-table--enable-row-hover .el-table__body tr:hover > td,
+.el-table__body tr.hover-row.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped>td,
+.el-table__body tr.hover-row>td {
+    background: linear-gradient(
+        to bottom,
+        rgba(65, 165, 251, 0.4),
+        rgba(53, 147, 230, 0.4),
+        rgba(38, 127, 205, 0.4)
+    );
+}
+/* 点击table某一行的颜色 */
+.el-table .current-row span,
+.el-table .current-row > td .cell{
+    color:rgba(0,255,191,1);
+}
+/* 排序颜色 */
+.el-table .descending .sort-caret.descending{
+    border-top-color:rgba(0,197,255,1);
+}
+.el-table .ascending .sort-caret.ascending{
+    border-bottom-color: rgba(0,197,255,1);
+}
+/* 页码颜色 */
+.el-pagination{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.el-pagination .el-select .el-input .el-input__inner{
+    border-radius: 0;
+}
+.el-pagination__editor.el-input .el-input__inner{
+    height:24px;
+    line-height: 24px;
+}
+.el-pagination .el-input--mini .el-input__inner{
+    height:24px;
+    line-height:24px;
+}
+.el-pagination__jump .el-input__inner,
+.el-pagination__sizes .el-input__inner{
+    background: rgba(0,164,255,0.30);
+    border: 1px solid rgba(0,164,255,1);
+    color: #fff;
+}
+.table-pagination .el-pager li,
+.el-pagination .btn-next, .el-pagination .btn-prev{
+    color:#fff;
+    background: rgba(0, 164, 255, 0.3);
+    // background: radial-gradient(50% 198%, rgba(5,150,199,1) 50%, rgba(18,78,126,1) 100%);
+    border: 1px solid #028AD5;
+    border-radius: 2px;;
+    margin-left: 10px;
+    min-width: 26px;
+    height: 24px;
+    line-height: 22px;
+}
+.table-pagination .el-pager li.active{
+    // background-image: radial-gradient(50% 198%, #00FFBF 50%, #118F70 100%);
+    background:rgba(17,143,112,0.3);
+    border: 1px solid #00FFBF;
+}
+.el-pager li.active+li{
+    border-left:1px solid #028AD5;
+}
+.table-pagination .el-pager li:not(.active):hover,
+.el-pagination .btn-next:not(:disabled):hover,
+.el-pagination .btn-prev:not(:disabled):hover{
+    color: #fff;
+    background: rgba(0,164,255,0.50);
+    // background: radial-gradient(50% 198%, rgba(5,150,199,0.5) 50%, rgba(18,78,126,0.5) 100%);
+}
+.el-pagination button{margin:0;}
+.el-pagination .btn-prev,
+.el-pagination .btn-next{
+    padding:0;
+}
+.el-pagination .btn-prev .el-icon-arrow-left,
+.el-pagination .btn-next .el-icon-arrow-right{
+    color: inherit;
+}
+.el-pagination button:disabled{
+    // opacity:0.35;
+    background: rgba(0, 121, 124, 0.4);
+}
+.el-pagination__total,
+.el-pagination__jump{
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+}
+.module-table button.operateBtn {
+    background: none !important;
+    border: none;
+    color: #fff;
+    padding: 0;
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 1px;
+}
+.module-table button.operateBtn.is-disabled span{
+    color: #ccc;
+}
+.module-table button.operateBtn.is-disabled:hover {
+    background: none !important;
+}
+.el-table__fixed,
+.el-table__fixed-right{
+    background:rgba(23,68,106,1);
+}
+.el-table__fixed-right .el-table__body{
+    padding: 0 0 0 12px;
+}
+.el-table__fixed-header-wrapper{
+    background: rgba(134,187,255,0.15);
+}
+.el-table__fixed-body-wrapper{
+    border: 1px solid rgba(255,255,255,0.10);
+    border-top:none;
+}
+.el-table__fixed-right::before, .el-table__fixed::before{
+    background-color: transparent;
+}
+.isnoborder .el-table__header-wrapper{
+    border: none;
+    border-bottom: 1px solid $table-border-color;
+    background: rgba(255,255,255,0.03);
+}
+.isnoborder .el-table__body-wrapper{
+    border:none;
+}
+
+/* -----------------------------------------------------------下拉弹框-------------------------------------------------- */
+.el-select{
+    width:100%;
+}
+.el-select-dropdown {
+    border-radius: 3px;
+    background-color: $bg-color;
+    border:1px solid $border-color;
+    margin-top:0;
+}
+.el-select-dropdown .el-scrollbar{
+    border: none;
+    background: transparent;
+}
+.el-select-dropdown .el-scrollbar__wrap{
+    background: transparent;
+}
+.el-select-dropdown__item{
+    height:26px;
+    line-height:26px;
+    color:$main-color;
+}
+/* .el-select-dropdown__item.hover,
+.el-date-table td.available:hover {
+    color: #eee;
+    background-color: rgba(32, 160, 255, 0.8);
+} */
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
+    background-color: transparent;
+}
+.el-date-table td.disabled {
+    background-color: transparent;
+    color: #848484;
+}
+.el-select-dropdown .popper__arrow{
+    display:none;
+}
+.el-select .el-tag{
+    background-color: rgba(84, 185, 241, 0.6);
+    color: rgba(255,255,255,0.75);
+}
+.el-tag--small{
+    height: 20px;
+    line-height: 19px;
+}
+.el-select-dropdown__item.selected{
+    color:#fff;
+    font-weight:normal;
+    background:rgba(0,255,191,0.30);
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item{
+    margin: 4px 0;
+    color:rgba(255,255,255,0.75);
+    background: rgba(189,240,255,0.10);
+    box-shadow: inset 0 -1px 0 0 rgba(110,222,255,0.40), inset 0 1px 0 0 rgba(110,222,255,0.40);
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item:hover{
+    background: rgba(0,164,255,0.20);
+    box-shadow: inset 0 -1px 0 0 rgba(0,164,255,0.60), inset 0 1px 0 0 rgba(0,164,255,0.60);
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected,
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover,
+.el-select-dropdown.is-multiple.selectMultiple .el-select-dropdown__item.selected,
+.el-select-dropdown.is-multiple.selectMultiple .el-select-dropdown__item.selected.hover{
+    color:rgba(255,255,255,0.75);
+    background: rgba(0,255,191,0.10);
+    box-shadow: inset 0 -1px 0 0 rgba(0,255,191,0.60), inset 0 1px 0 0 rgba(0,255,191,0.60);
+}
+
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected,
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected.hover,
+.el-select-dropdown.is-multiple.selectMultiple .el-select-dropdown__item.selected,
+.el-select-dropdown.is-multiple.selectMultiple .el-select-dropdown__item.selected.hover,
+.el-select-dropdown__item:not(.selected):hover {
+    background-color: transparent;
+    color: #eee;
+}
+
+// ----------------------------------------------MASK--------------------------------------
+.el-loading-mask{
+    background-color: rgba(255, 255, 255, 0.015);
+}
