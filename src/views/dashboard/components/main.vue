@@ -1,98 +1,17 @@
-<template>
-    <div class="container">
-        <div class="container__leftPart">
-            <div class="container__minBox">
-                <containerBox title="24小时旅游变化趋势">
-                    <lineArea
-                        ref="toursLine"
-                        :option="toursLineOpt"
-                        :renderData="toursLineData"
-                    ></lineArea>
-                </containerBox>
-            </div>
-            <div class="container__minBox">
-                <containerBox title="景区驻留游客排行"></containerBox>
-            </div>
-            <div class="container__minBox lastBox">
-                <containerBox title="近7天游客变化趋势">
-                    <lineArea
-                        ref="toursLine2"
-                        :option="toursLineOpt"
-                        :renderData="sevenlineData"
-                    ></lineArea>
-                </containerBox>
-            </div>
-        </div>
-        <div class="container__middlePart">
-            <div class="container__centerBox">
-                <containerBox :isMaxBox="true" :isHeader="false"></containerBox>
-            </div>
-        </div>
-        <div class="container__rightPart">
-            <div class="container__minCol">
-                <div class="container__minBox">
-                    <containerBox title="外省游客TOP5">
-                        <barCom
-                            ref="barChart"
-                            title="省份排名"
-                            :renderData="barChartData"
-                        ></barCom>
-                    </containerBox>
-                </div>
-                <div class="container__minBox">
-                    <containerBox title="出行方式分析">
-                        <graphChart
-                            ref="graphChart"
-                            :option="toursLineOpt"
-                            :renderData="graphChartData"
-                        ></graphChart>
-                    </containerBox>
-                </div>
-                <div class="container__minBox lastBox">
-                    <containerBox title="出行方式分析"></containerBox>
-                </div>
-            </div>
-            <div class="container__minCol">
-                <div class="container__minBox">
-                    <containerBox title="境外游客TOP5">
-                        <barCom
-                            ref="barChart"
-                            title="境外排名"
-                            :renderData="barChartData"
-                        ></barCom>
-                    </containerBox>
-                </div>
-                <div class="container__minBox">
-                    <containerBox title="出行方式分析"> </containerBox>
-                </div>
-                <div class="container__minBox lastBox">
-                    <containerBox title="出行方式分析"></containerBox>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import containerBox from '@/components/containerBox.vue'
-import graphChart from '@/components/dashboard/graphChart.vue'
-import barCom from '@/components/dashboard/barCom.vue'
-import lineArea from '@/components/dashboard/stackedChart.vue'
+<script lang="tsx">
+import { Component } from 'vue-property-decorator'
+import { Component as VueComponent } from 'vue-tsx-support'
+import Box from '@/components/containerBox.vue'
+import StackedChart from '@/components/dashboard/stackedChart.vue'
+import GraphChart from '@/components/dashboard/graphChart.vue'
+import BarCom from '@/components/dashboard/barCom.vue'
 import {
     getLeftTopLineArea,
     getGraphChartData,
     getBarChartData
 } from '@/api/dashboard'
-@Component({
-    components: {
-        containerBox,
-        lineArea,
-        graphChart,
-        barCom
-    }
-})
-export default class ContentMain extends Vue {
+@Component
+export default class ContentMain extends VueComponent<{}> {
     toursLineOpt: Object = {
         width: '100%',
         height: '150px',
@@ -107,7 +26,6 @@ export default class ContentMain extends Vue {
     sevenlineData: Array<Object> = []
     graphChartData: Object = {}
     barChartData: Array<Object> = []
-    trajectoryData: Array<Object> = []
 
     mounted() {
         getLeftTopLineArea().then(resp => {
@@ -126,6 +44,83 @@ export default class ContentMain extends Vue {
             const { data } = resp
             this.barChartData = data
         })
+    }
+
+    render(h: any) {
+        return (
+            <div class="container">
+                <div class="container__leftPart">
+                    <div class="container__minBox">
+                        <Box title="24小时旅游变化趋势">
+                            <StackedChart
+                                ref="toursLine"
+                                option={this.toursLineOpt}
+                                renderData={this.toursLineData}
+                            />
+                        </Box>
+                    </div>
+                    <div class="container__minBox">
+                        <Box title="景区驻留游客排行" />
+                    </div>
+                    <div class="container__minBox lastBox">
+                        <Box title="近7天游客变化趋势">
+                            <StackedChart
+                                ref="toursLine2"
+                                option={this.toursLineOpt}
+                                renderData={this.sevenlineData}
+                            />
+                        </Box>
+                    </div>
+                </div>
+                <div class="container__middlePart">
+                    <div class="container__centerBox">
+                        <Box cls="border02" isHeader="false" />
+                    </div>
+                </div>
+                <div class="container__rightPart">
+                    <div class="container__minCol">
+                        <div class="container__minBox">
+                            <Box title="外省游客TOP5">
+                                <BarCom
+                                    ref="barChart"
+                                    barType="省份排名"
+                                    renderData={this.barChartData}
+                                />
+                            </Box>
+                        </div>
+                        <div class="container__minBox">
+                            <Box title="出行方式分析">
+                                <GraphChart
+                                    ref="graphChart"
+                                    option={this.toursLineOpt}
+                                    renderData={this.graphChartData}
+                                />
+                            </Box>
+                        </div>
+                        <div class="container__minBox lastBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                    </div>
+                    <div class="container__minCol">
+                        <div class="container__minBox">
+                            <Box title="境外游客TOP5">
+                                <BarCom
+                                    ref="barChart"
+                                    barType="境外排名"
+                                    renderData={this.barChartData}
+                                />
+                            </Box>
+                        </div>
+                        <div class="container__minBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                        <div class="container__minBox lastBox">
+                            <Box title="出行方式分析" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }
 </script>

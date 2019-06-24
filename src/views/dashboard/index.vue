@@ -1,25 +1,23 @@
-<template>
-    <div class="dashboard-container">
-        <div class="dc-header">
-            <Header></Header>
-        </div>
-        <div class="dc-content">
-            <ContentMain></ContentMain>
-        </div>
-    </div>
-</template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+<script lang="tsx">
+import { Component } from 'vue-property-decorator'
+import { Component as VueComponent } from 'vue-tsx-support'
 import Header from './components/header.vue'
 import ContentMain from './components/main.vue'
-@Component({
-    components: {
-        Header,
-        ContentMain
+@Component
+export default class Dashboard extends VueComponent<{}> {
+    render(h: any) {
+        return (
+            <div class="dashboard-container">
+                <div class="dc-header">
+                    <Header />
+                </div>
+                <div class="dc-content">
+                    <ContentMain />
+                </div>
+            </div>
+        )
     }
-})
-export default class Dashboard extends Vue {}
+}
 </script>
 
 <style lang="scss" scoped>

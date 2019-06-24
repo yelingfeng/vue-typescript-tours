@@ -1,8 +1,12 @@
 <template>
     <div class="barCom">
-        <p>{{ title }}</p>
+        <p>{{ barType }}</p>
         <p class="barCom__numCount">人数</p>
-        <div v-for="(item, index) in renderData" class="barCom__container">
+        <div
+            v-for="(item, index) in renderData"
+            class="barCom__container"
+            :key="index"
+        >
             <div class="barCom__index" :c="index" ref="barIndex">
                 {{ index + 1 }}
             </div>
@@ -21,7 +25,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class BarCom extends Vue {
-    @Prop() private title!: string
+    @Prop() private barType!: string
     @Prop() private renderData!: any
 
     updated() {

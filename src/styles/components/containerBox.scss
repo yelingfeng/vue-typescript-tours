@@ -67,3 +67,17 @@ $headerHeight: 28px;
     border-image-slice: 28;
     border-image-repeat: stretch;
 }
+
+.border03 {
+    border: 10px solid;
+    border-image-source: url('./../../assets/images/containerBox/borderImg03.png');
+    border-image-slice: 28;
+    border-image-repeat: stretch;
+}
+
+.border04 {
+    border: 10px solid;
+    border-image-source: url('./../../assets/images/containerBox/borderImg04.png');
+    border-image-slice: 28;
+    border-image-repeat: stretch;
+}

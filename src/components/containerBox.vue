@@ -1,10 +1,19 @@
 <script lang="tsx">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
+import { Component as VueComponent } from 'vue-tsx-support'
+
+interface Iprop {
+    title?: string
+    cls?: string
+    isHeader?: boolean
+}
 
 @Component
-export default class ContainerBox extends Vue {
+export default class ContainerBox extends VueComponent<Iprop> {
     @Prop() title!: string
-    @Prop({ default: false }) isMaxBox!: boolean
+    // border01 border02 border03
+    @Prop({ default: 'border01' }) cls!: string
+
     @Prop({ default: true }) isHeader!: boolean
 
     render(h: any) {
@@ -17,10 +26,7 @@ export default class ContainerBox extends Vue {
             )
         }
 
-        let boxImageClass = [
-            'containerBox',
-            this.isMaxBox ? 'border02' : 'border01'
-        ]
+        let boxImageClass = ['containerBox', this.cls]
 
         return (
             <div class={boxImageClass}>
