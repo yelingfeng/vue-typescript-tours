@@ -3,7 +3,14 @@ import { Component } from 'vue-property-decorator'
 import { Component as VueComponent } from 'vue-tsx-support'
 import Box from '@/components/containerBox.vue'
 import StackedChart from '@/components/dashboard/stackedChart.vue'
-import { getLeftTopLineArea } from '@/api/dashboard'
+import GraphChart from '@/components/dashboard/graphChart.vue'
+import BarCom from '@/components/dashboard/barCom.vue'
+import {
+    getLeftTopLineArea,
+    getGraphChartData,
+    getBarChartData,
+    getZLdata
+} from '@/api/dashboard'
 @Component
 export default class ContentMain extends VueComponent<{}> {
     toursLineOpt: Object = {
@@ -18,6 +25,15 @@ export default class ContentMain extends VueComponent<{}> {
     }
     toursLineData: Array<Object> = []
     sevenlineData: Array<Object> = []
+    graphChartData: Object = {}
+    barChartData: Array<Object> = []
+    tableData: Array<Object> = []
+
+    get tableHeight() {
+        return {
+            height: 150
+        }
+    }
 
     mounted() {
         getLeftTopLineArea().then(resp => {
@@ -27,7 +43,22 @@ export default class ContentMain extends VueComponent<{}> {
             this.sevenlineData = data
         })
 
-        // this.toursLineData = allUserData
+        getGraphChartData().then(resp => {
+            const { data } = resp
+            this.graphChartData = data
+        })
+
+        getBarChartData().then(resp => {
+            const { data } = resp
+            this.barChartData = data
+        })
+        getZLdata().then(resp => {
+            let { data } = resp
+            data.forEach((item, index) => {
+                item.index = index + 1
+            })
+            this.tableData = data
+        })
     }
 
     render(h: any) {
@@ -44,7 +75,29 @@ export default class ContentMain extends VueComponent<{}> {
                         </Box>
                     </div>
                     <div class="container__minBox">
-                        <Box title="景区驻留游客排行" />
+                        <Box title="景区驻留游客排行">
+                            <el-table
+                                class="container__tableWrap"
+                                data={this.tableData}
+                                style="width: 100%"
+                                height={this.tableHeight.height}
+                            >
+                                <el-table-column
+                                    prop="index"
+                                    width="60"
+                                    label="排名"
+                                />
+                                <el-table-column
+                                    prop="name"
+                                    label="景区名称"
+                                    width="100"
+                                />
+                                <el-table-column
+                                    prop="count"
+                                    label="驻留旅客数"
+                                />
+                            </el-table>
+                        </Box>
                     </div>
                     <div class="container__minBox lastBox">
                         <Box title="近7天游客变化趋势">
@@ -64,10 +117,22 @@ export default class ContentMain extends VueComponent<{}> {
                 <div class="container__rightPart">
                     <div class="container__minCol">
                         <div class="container__minBox">
-                            <Box title="外省游客TOP5" />
+                            <Box title="外省游客TOP5">
+                                <BarCom
+                                    ref="barChart"
+                                    barType="省份排名"
+                                    renderData={this.barChartData}
+                                />
+                            </Box>
                         </div>
                         <div class="container__minBox">
-                            <Box title="出行方式分析" />
+                            <Box title="出行方式分析">
+                                <GraphChart
+                                    ref="graphChart"
+                                    option={this.toursLineOpt}
+                                    renderData={this.graphChartData}
+                                />
+                            </Box>
                         </div>
                         <div class="container__minBox lastBox">
                             <Box title="出行方式分析" />
@@ -75,7 +140,13 @@ export default class ContentMain extends VueComponent<{}> {
                     </div>
                     <div class="container__minCol">
                         <div class="container__minBox">
-                            <Box title="境外游客TOP5" />
+                            <Box title="境外游客TOP5">
+                                <BarCom
+                                    ref="barChart"
+                                    barType="境外排名"
+                                    renderData={this.barChartData}
+                                />
+                            </Box>
                         </div>
                         <div class="container__minBox">
                             <Box title="出行方式分析" />
@@ -144,6 +215,9 @@ export default class ContentMain extends VueComponent<{}> {
     &__centerBox {
         height: 100%;
         margin: 0 4px 4px;
+    }
+    &__tableWrap {
+        margin-top: 6px;
     }
 }
 </style>
