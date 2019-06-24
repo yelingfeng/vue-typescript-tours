@@ -2,18 +2,18 @@
 .hc {
     @include clearfix;
     width: 100%;
+    height:60px;
+    line-height: 60px;
     display: flex;
     justify-content: space-between;
     background: url('./../../assets/images/dashboard/headerBg.png') no-repeat center 0;
-    background-size: contain;
+    background-size: 100% 60px;
 
     &-left {
         display: flex;
         align-items: center;
         padding-left: 10px;
-        height: 88px;
         z-index: 102;
-
         &-sysname {
             color: #00feff;
             font-size: 20px;
@@ -22,7 +22,6 @@
             white-space: nowrap;
             cursor: default;
             margin-right: 8px;
-            margin-bottom: 20px;
         }
 
         &-menu {
@@ -33,31 +32,30 @@
             background-size: 100% 100%;
             cursor: pointer;
             margin-right: 8px;
-            margin-bottom: 20px;
         }
     }
 
     &-center {
         width: calc(70% - 10vw);
+        flex-grow:1;
+        order:2;
         display: flex;
         justify-content: center;
         align-items: center;
-
         &-title {
             font-size: 1.3vw;
             color: #fff;
             line-height: 30px;
             text-align: center;
-            margin: 0 0 20px 20px;
         }
     }
     &-right {
+        order:3;
         width: 35vm;
+        color: #fff;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        color: #fff;
-
         &-clock {
             margin-right: 10px;
         }

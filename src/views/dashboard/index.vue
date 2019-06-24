@@ -5,23 +5,6 @@
         </div>
         <div class="dc-content">
             <ContentMain></ContentMain>
-            <el-row :gutter="20">
-                <el-col :span="8">
-                    <div style="width:300px;height:200px;margin-top:100px;">
-                        <containerBox title="24小时旅游变化趋势"></containerBox>
-                    </div>
-                </el-col>
-                <el-col :span="8">
-                    <div style="width:500px;height:500px;margin-top:100px;">
-                        <containerBox
-                            :isMaxBox="max"
-                            :isHeader="min"
-                            title="24小时旅游变化趋势"
-                        ></containerBox>
-                    </div>
-                </el-col>
-                <el-col :span="8"> </el-col>
-            </el-row>
         </div>
     </div>
 </template>
@@ -30,18 +13,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 import Header from './components/header.vue'
 import ContentMain from './components/main.vue'
-import containerBox from '@/components/containerBox.vue'
 @Component({
     components: {
         Header,
-        ContentMain,
-        containerBox
+        ContentMain
     }
 })
-export default class Dashboard extends Vue {
-    max: boolean = true
-    min: boolean = false
-}
+export default class Dashboard extends Vue {}
 </script>
 
 <style lang="scss" scoped>
@@ -57,16 +35,11 @@ export default class Dashboard extends Vue {
 
     & .dc-content {
         width: 100%;
-        height: 100%;
-        padding: 0 16px 12px;
-        position: relative;
-    }
-}
-
-.el-row {
-    margin-bottom: 20px;
-    &:last-child {
-        margin-bottom: 0;
+        height: calc(100% - 60px);
+        left: 0;
+        top: 60px;
+        position: absolute;
+        overflow: hidden;
     }
 }
 </style>
