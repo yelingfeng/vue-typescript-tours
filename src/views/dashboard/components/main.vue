@@ -8,7 +8,8 @@ import BarCom from '@/components/dashboard/barCom.vue'
 import {
     getLeftTopLineArea,
     getGraphChartData,
-    getBarChartData
+    getBarChartData,
+    getZLdata
 } from '@/api/dashboard'
 @Component
 export default class ContentMain extends VueComponent<{}> {
@@ -26,6 +27,13 @@ export default class ContentMain extends VueComponent<{}> {
     sevenlineData: Array<Object> = []
     graphChartData: Object = {}
     barChartData: Array<Object> = []
+    tableData: Array<Object> = []
+
+    get tableHeight() {
+        return {
+            height: 150
+        }
+    }
 
     mounted() {
         getLeftTopLineArea().then(resp => {
@@ -44,6 +52,13 @@ export default class ContentMain extends VueComponent<{}> {
             const { data } = resp
             this.barChartData = data
         })
+        getZLdata().then(resp => {
+            let { data } = resp
+            data.forEach((item, index) => {
+                item.index = index + 1
+            })
+            this.tableData = data
+        })
     }
 
     render(h: any) {
@@ -60,7 +75,29 @@ export default class ContentMain extends VueComponent<{}> {
                         </Box>
                     </div>
                     <div class="container__minBox">
-                        <Box title="景区驻留游客排行" />
+                        <Box title="景区驻留游客排行">
+                            <el-table
+                                class="container__tableWrap"
+                                data={this.tableData}
+                                style="width: 100%"
+                                height={this.tableHeight.height}
+                            >
+                                <el-table-column
+                                    prop="index"
+                                    width="60"
+                                    label="排名"
+                                />
+                                <el-table-column
+                                    prop="name"
+                                    label="景区名称"
+                                    width="100"
+                                />
+                                <el-table-column
+                                    prop="count"
+                                    label="驻留旅客数"
+                                />
+                            </el-table>
+                        </Box>
                     </div>
                     <div class="container__minBox lastBox">
                         <Box title="近7天游客变化趋势">
@@ -178,6 +215,9 @@ export default class ContentMain extends VueComponent<{}> {
     &__centerBox {
         height: 100%;
         margin: 0 4px 4px;
+    }
+    &__tableWrap {
+        margin-top: 6px;
     }
 }
 </style>

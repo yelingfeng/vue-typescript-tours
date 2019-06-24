@@ -29,3 +29,12 @@ export const getBarChartData = () => {
         method: 'post'
     })
 }
+/**
+ * 景区驻留游客排行
+ */
+export const getZLdata = () => {
+    return request({
+        url: '/dashboard/ravellerData',
+        method: 'post'
+    })
+}
