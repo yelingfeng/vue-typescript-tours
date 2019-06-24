@@ -31,10 +31,22 @@
         <div class="container__rightPart">
             <div class="container__minCol">
                 <div class="container__minBox">
-                    <containerBox title="外省游客TOP5"></containerBox>
+                    <containerBox title="外省游客TOP5">
+                        <barCom
+                            ref="barChart"
+                            title="省份排名"
+                            :renderData="barChartData"
+                        ></barCom>
+                    </containerBox>
                 </div>
                 <div class="container__minBox">
-                    <containerBox title="出行方式分析"></containerBox>
+                    <containerBox title="出行方式分析">
+                        <graphChart
+                            ref="graphChart"
+                            :option="toursLineOpt"
+                            :renderData="graphChartData"
+                        ></graphChart>
+                    </containerBox>
                 </div>
                 <div class="container__minBox lastBox">
                     <containerBox title="出行方式分析"></containerBox>
@@ -42,10 +54,16 @@
             </div>
             <div class="container__minCol">
                 <div class="container__minBox">
-                    <containerBox title="境外游客TOP5"></containerBox>
+                    <containerBox title="境外游客TOP5">
+                        <barCom
+                            ref="barChart"
+                            title="境外排名"
+                            :renderData="barChartData"
+                        ></barCom>
+                    </containerBox>
                 </div>
                 <div class="container__minBox">
-                    <containerBox title="出行方式分析"></containerBox>
+                    <containerBox title="出行方式分析"> </containerBox>
                 </div>
                 <div class="container__minBox lastBox">
                     <containerBox title="出行方式分析"></containerBox>
@@ -58,10 +76,21 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import containerBox from '@/components/containerBox.vue'
+import graphChart from '@/components/dashboard/graphChart.vue'
+import barCom from '@/components/dashboard/barCom.vue'
 import lineArea from '@/components/dashboard/stackedChart.vue'
-import { getLeftTopLineArea } from '@/api/dashboard'
+import {
+    getLeftTopLineArea,
+    getGraphChartData,
+    getBarChartData
+} from '@/api/dashboard'
 @Component({
-    components: { containerBox, lineArea }
+    components: {
+        containerBox,
+        lineArea,
+        graphChart,
+        barCom
+    }
 })
 export default class ContentMain extends Vue {
     toursLineOpt: Object = {
@@ -76,6 +105,9 @@ export default class ContentMain extends Vue {
     }
     toursLineData: Array<Object> = []
     sevenlineData: Array<Object> = []
+    graphChartData: Object = {}
+    barChartData: Array<Object> = []
+    trajectoryData: Array<Object> = []
 
     mounted() {
         getLeftTopLineArea().then(resp => {
@@ -85,7 +117,15 @@ export default class ContentMain extends Vue {
             this.sevenlineData = data
         })
 
-        // this.toursLineData = allUserData
+        getGraphChartData().then(resp => {
+            const { data } = resp
+            this.graphChartData = data
+        })
+
+        getBarChartData().then(resp => {
+            const { data } = resp
+            this.barChartData = data
+        })
     }
 }
 </script>

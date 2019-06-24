@@ -5,7 +5,7 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 @import './transition.scss';
 @import './variables.scss';
 
-body {
+body, p {
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
