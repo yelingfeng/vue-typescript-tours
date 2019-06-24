@@ -4,6 +4,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class ContainerBox extends Vue {
     @Prop() title!: string
+    // border01 border02 border03
+    @Prop({ default: 'border01' }) cls!: string
     @Prop({ default: false }) isMaxBox!: boolean
     @Prop({ default: true }) isHeader!: boolean
 
@@ -17,10 +19,7 @@ export default class ContainerBox extends Vue {
             )
         }
 
-        let boxImageClass = [
-            'containerBox',
-            this.isMaxBox ? 'border02' : 'border01'
-        ]
+        let boxImageClass = ['containerBox', this.cls]
 
         return (
             <div class={boxImageClass}>

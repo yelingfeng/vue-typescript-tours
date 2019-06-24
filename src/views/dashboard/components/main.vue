@@ -25,7 +25,7 @@
         </div>
         <div class="container__middlePart">
             <div class="container__centerBox">
-                <containerBox :isMaxBox="true" :isHeader="false"></containerBox>
+                <containerBox cls="border03" :isHeader="false"></containerBox>
             </div>
         </div>
         <div class="container__rightPart">
