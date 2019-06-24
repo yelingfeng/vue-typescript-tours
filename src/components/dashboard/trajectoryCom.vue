@@ -21,64 +21,12 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'trajectoryCom',
-    data() {
-        return {
-            width: 100,
-            height: 100
-        }
-    },
-    updated() {
-        this.$nextTick(function() {
-            this.barStyle()
-        })
-    },
-    props: ['title', 'renderData'],
-    computed: {
-        baseWidth() {
-            if (this.renderData && this.renderData.length !== 0) {
-                return this.renderData[0].count
-            }
-            return 5
-        }
-    },
-    methods: {
-        barStyle() {
-            let bar = this.$refs.lightBar
-            let baseWidth = this.baseWidth
-            if (bar) {
-                bar.forEach(item => {
-                    let width = item.getAttribute('w')
-                    let per = (width / baseWidth) * 100
-                    item.style.width = `calc(${per}%)`
-                })
-            }
-            let index = this.$refs.barIndex
-            if (index) {
-                index.forEach(item => {
-                    let c = item.getAttribute('c')
-                    let color = 'rgba(162, 238, 255, 1)'
-                    switch (c) {
-                        case '0':
-                            color = 'rgba(255,80,80,1)'
-                            break
-                        case '1':
-                            color = 'rgba(255,157,107,1)'
-                            break
-                        case '2':
-                            color = 'rgba(218,210,106,1)'
-                            break
-                        default:
-                            color = 'rgba(162, 238, 255, 1)'
-                            break
-                    }
-                    item.style.color = color
-                })
-            }
-        }
-    }
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component
+export default class trajectoryCom extends Vue {
+    @Prop() private renderData!: any
 }
 </script>
 
@@ -90,7 +38,7 @@ export default {
     padding-bottom: 5px;
     display: flex;
     flex-flow: column;
-    justify-content: space-around;
+    justify-content: space-between;
     color: $font-color;
     font-size: $sml-size;
     position: relative;
@@ -132,6 +80,7 @@ export default {
         text-align: center;
     }
     &__icon {
+        color: $main-color;
         width: 20px;
     }
     &__count {
