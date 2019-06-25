@@ -5,10 +5,12 @@ import Box from '@/components/containerBox.vue'
 import StackedChart from '@/components/dashboard/stackedChart.vue'
 import GraphChart from '@/components/dashboard/graphChart.vue'
 import BarCom from '@/components/dashboard/barCom.vue'
+import TrajectoryCom from '@/components/dashboard/trajectoryCom.vue'
 import {
     getLeftTopLineArea,
     getGraphChartData,
     getBarChartData,
+    getTrajectoryData,
     getZLdata
 } from '@/api/dashboard'
 @Component
@@ -27,6 +29,7 @@ export default class ContentMain extends VueComponent<{}> {
     sevenlineData: Array<Object> = []
     graphChartData: Object = {}
     barChartData: Array<Object> = []
+    trajectoryData: Array<Object> = []
     tableData: Array<Object> = []
 
     get tableHeight() {
@@ -52,6 +55,12 @@ export default class ContentMain extends VueComponent<{}> {
             const { data } = resp
             this.barChartData = data
         })
+
+        getTrajectoryData().then(resp => {
+            const { data } = resp
+            this.trajectoryData = data
+        })
+
         getZLdata().then(resp => {
             let { data } = resp
             data.forEach((item: any, index: number) => {
@@ -149,7 +158,12 @@ export default class ContentMain extends VueComponent<{}> {
                             </Box>
                         </div>
                         <div class="container__minBox">
-                            <Box title="出行方式分析" />
+                            <Box title="出行方式分析">
+                                <TrajectoryCom
+                                    ref="trajectoryCom"
+                                    renderData={this.trajectoryData}
+                                />
+                            </Box>
                         </div>
                         <div class="container__minBox lastBox">
                             <Box title="出行方式分析" />

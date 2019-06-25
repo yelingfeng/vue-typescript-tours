@@ -82,7 +82,7 @@ export default class BarCom extends Vue {
 .barCom {
     width: 100%;
     height: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
