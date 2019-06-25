@@ -35,7 +35,8 @@ export const getBarChartData = () => {
  */
 export const getTrajectoryData = () => {
     return request({
-        url: '/dashboard/routeMock'
+        url: '/dashboard/routeMock',
+        method: 'post'
     })
 }
 /**
