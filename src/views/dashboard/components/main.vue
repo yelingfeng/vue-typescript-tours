@@ -54,7 +54,7 @@ export default class ContentMain extends VueComponent<{}> {
         })
         getZLdata().then(resp => {
             let { data } = resp
-            data.forEach((item, index) => {
+            data.forEach((item: any, index: number) => {
                 item.index = index + 1
             })
             this.tableData = data
