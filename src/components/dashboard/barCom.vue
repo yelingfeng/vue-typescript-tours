@@ -122,7 +122,8 @@ export default class BarCom extends Vue {
         padding-left: 6px;
         margin-right: 10px;
         min-width: 5px;
-        height: 23px;
+        margin-top: -1px;
+        height: 25px;
         border-radius: 0 4px 4px 0;
         background-image: linear-gradient(
             90deg,
