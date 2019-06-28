@@ -2,18 +2,24 @@
 import { Component } from 'vue-property-decorator'
 import { Component as VueComponent } from 'vue-tsx-support'
 import ContainerBox from '@/components/containerBox.vue'
-// import StackedChart from '@/components/dashboard/stackedChart.vue'
 import LineAreaChart from '@/components/dashboard/lineAreaChart.vue'
-import { getLeftTopLineArea } from '@/api/dashboard'
-import { mapState } from 'vuex'
-
 interface lineOptions {
     width?: string
     height?: string
     props?: Object
     renderData?: Array<Object>
 }
-
+import StackedChart from '@/components/dashboard/stackedChart.vue'
+import GraphChart from '@/components/dashboard/graphChart.vue'
+import BarCom from '@/components/dashboard/barCom.vue'
+import TrajectoryCom from '@/components/dashboard/trajectoryCom.vue'
+import {
+    getLeftTopLineArea,
+    getGraphChartData,
+    getBarChartData,
+    getTrajectoryData,
+    getZLdata
+} from '@/api/dashboard'
 @Component
 export default class ContentMain extends VueComponent<{}> {
     toursLineOpt: lineOptions = {
@@ -28,6 +34,17 @@ export default class ContentMain extends VueComponent<{}> {
         renderData: Object.create(null)
     }
     toursLineData: Array<Object> = []
+    sevenlineData: Array<Object> = []
+    graphChartData: Object = {}
+    barChartData: Array<Object> = []
+    trajectoryData: Array<Object> = []
+    tableData: Array<Object> = []
+
+    get tableHeight() {
+        return {
+            height: 150
+        }
+    }
 
     mounted() {
         getLeftTopLineArea().then(resp => {
@@ -36,6 +53,29 @@ export default class ContentMain extends VueComponent<{}> {
             this.toursLineOpt.renderData = data
         })
         // this.toursLineData = allUserData
+
+        getGraphChartData().then(resp => {
+            const { data } = resp
+            this.graphChartData = data
+        })
+
+        getBarChartData().then(resp => {
+            const { data } = resp
+            this.barChartData = data
+        })
+
+        getTrajectoryData().then(resp => {
+            const { data } = resp
+            this.trajectoryData = data
+        })
+
+        getZLdata().then(resp => {
+            let { data } = resp
+            data.forEach((item: any, index: number) => {
+                item.index = index + 1
+            })
+            this.tableData = data
+        })
     }
 
     render(h: any) {
@@ -66,10 +106,22 @@ export default class ContentMain extends VueComponent<{}> {
                 <div class="container__rightPart">
                     <div class="container__minCol">
                         <div class="container__minBox">
-                            <ContainerBox name="外省游客TOP5" />
+                            <ContainerBox name="外省游客TOP5">
+                                <BarCom
+                                    ref="barChart"
+                                    barType="省份排名"
+                                    renderData={this.barChartData}
+                                />
+                            </ContainerBox>
                         </div>
                         <div class="container__minBox">
-                            <ContainerBox name="出行方式分析" />
+                            <ContainerBox name="出行方式分析">
+                                <GraphChart
+                                    ref="graphChart"
+                                    option={this.toursLineOpt}
+                                    renderData={this.graphChartData}
+                                />
+                            </ContainerBox>
                         </div>
                         <div class="container__minBox lastBox">
                             <ContainerBox name="出行方式分析" />
@@ -77,10 +129,21 @@ export default class ContentMain extends VueComponent<{}> {
                     </div>
                     <div class="container__minCol">
                         <div class="container__minBox">
-                            <ContainerBox name="境外游客TOP5" />
+                            <ContainerBox name="境外游客TOP5">
+                                <BarCom
+                                    ref="barChart"
+                                    barType="境外排名"
+                                    renderData={this.barChartData}
+                                />
+                            </ContainerBox>
                         </div>
                         <div class="container__minBox">
-                            <ContainerBox name="出行方式分析" />
+                            <ContainerBox name="出行方式分析">
+                                <TrajectoryCom
+                                    ref="trajectoryCom"
+                                    renderData={this.trajectoryData}
+                                />
+                            </ContainerBox>
                         </div>
                         <div class="container__minBox lastBox">
                             <ContainerBox name="出行方式分析" />
@@ -146,6 +209,9 @@ export default class ContentMain extends VueComponent<{}> {
     &__centerBox {
         height: 100%;
         margin: 0 4px 4px;
+    }
+    &__tableWrap {
+        margin-top: 6px;
     }
 }
 </style>
