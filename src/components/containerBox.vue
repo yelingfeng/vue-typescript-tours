@@ -2,31 +2,27 @@
 import { Component, Prop } from 'vue-property-decorator'
 import { Component as VueComponent } from 'vue-tsx-support'
 
-interface Iprop {
-    title?: string
-    cls?: string
+interface IProps {
+    name?: string
+    clsName?: string
     isHeader?: boolean
 }
-
 @Component
-export default class ContainerBox extends VueComponent<Iprop> {
-    @Prop() title!: string
-    // border01 border02 border03
-    @Prop({ default: 'border01' }) cls!: string
-
-    @Prop({ default: true }) isHeader!: boolean
-
+export default class ContainerBox extends VueComponent<IProps> {
+    @Prop({ default: '', type: String }) name!: string
+    @Prop({ default: 'border01', type: String }) clsName!: string
+    @Prop({ default: true, type: Boolean }) isHeader!: boolean
     render(h: any) {
         let titleContent
         if (this.isHeader) {
             titleContent = (
                 <div class="containerBox__header">
-                    <div class="containerBox__title">{this.title}</div>
+                    <div class="containerBox__title">{this.name}</div>
                 </div>
             )
         }
 
-        let boxImageClass = ['containerBox', this.cls]
+        let boxImageClass = ['containerBox', this.clsName]
 
         return (
             <div class={boxImageClass}>
@@ -39,5 +35,3 @@ export default class ContainerBox extends VueComponent<Iprop> {
     }
 }
 </script>
-
-<style lang="scss"></style>

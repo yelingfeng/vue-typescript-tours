@@ -1,13 +1,8 @@
-<template>
-    <div>
-        <span>{{ timeContent }}</span>
-    </div>
-</template>
-
-<script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+<script lang="tsx">
+import { Component, Prop } from 'vue-property-decorator'
+import { Component as VueComponent } from 'vue-tsx-support'
 @Component
-export default class TimeClock extends Vue {
+export default class TimeClock extends VueComponent<{}> {
     @Prop({ default: '' }) gTime!: string
     private timeContent: string = ''
     private timerID!: number
@@ -34,6 +29,14 @@ export default class TimeClock extends Vue {
             zero += '0'
         }
         return (zero + num).slice(-digit)
+    }
+
+    render(h: any) {
+        return (
+            <div>
+                <span>{this.timeContent}</span>
+            </div>
+        )
     }
 }
 </script>

@@ -8,6 +8,7 @@
         // 启动严格模式
         "strict": true,
         "jsx": "preserve",
+        "jsxFactory": "h",
         "importHelpers": true,
         // 忽略 this 的类型检查, Raise error on this expressions with an implied any type.
         "noImplicitThis": false,
@@ -25,7 +26,7 @@
             "@/*": ["src/*"]
         },
         // 编译过程中需要引入的库文件的列表。
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+        "lib": ["es5", "es6", "esnext", "dom", "dom.iterable", "scripthost"],
         // 给错误和消息设置样式，使用颜色和上下文。
         "pretty": true
     },
@@ -40,7 +41,7 @@
         "src/**/*.vue",
         "tests/**/*.ts",
         "tests/**/*.tsx"
-    ],
+    ]
     // 需要忽略编译的文件
-    "exclude": ["node_modules"]
+    //"exclude": ["node_modules"]
 }

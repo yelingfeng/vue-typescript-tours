@@ -2,6 +2,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Component as VueComponent } from 'vue-tsx-support'
 import Clock from './time-clock.vue'
+
 @Component
 export default class Header extends VueComponent<{}> {
     private sysName = '旅游监测分析系统'
